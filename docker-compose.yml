@@ -1,0 +1,23 @@
+version: '3'
+services:
+  mariadb:
+    image: mariadb
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: rootp@ssword
+      MYSQL_DATABASE: ts3
+      MYSQL_USER: ts3
+      MYSQL_PASSWORD: ts3@secret
+  ts3:
+    build:
+      context: docker/
+    restart: on-failure #Force restart container because MariaDB is not ready immediately
+    environment:
+      TS3_DB_HOST: mariadb
+      TS3_DB_USER: ts3
+      TS3_DB_PASS: ts3@secret
+    ports:
+      - "10011:10011"
+      - "30033:30033"
+      - "9987:9987/udp"
