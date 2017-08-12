@@ -18,4 +18,4 @@ RUN groupadd -r $TS_USER && useradd -r -g $TS_USER $TS_USER
 RUN chown -R -f $TS_USER:$TS_USER . && chmod u+x *.sh
 
 USER $TS_USER
-ENTRYPOINT ./start.sh
+ENTRYPOINT ["./start.sh"]

@@ -48,8 +48,9 @@ if [ -n "$TS3_DB_HOST" ]; then
 
   echo "Copying libmariadb.so.2"
   cp redist/libmariadb.so.2 libmariadb.so.2
+  export LD_LIBRARY_PATH=".:$LD_LIBRARY_PATH"
 else
   echo "Using default configuration"
 fi;
 
-sh ./ts3server_minimal_runscript.sh $args
+exec ./ts3server $args
